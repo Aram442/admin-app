@@ -6,6 +6,7 @@ function Home() {
   return (
     <div className="home">
       <SideBar />
+      <div className="homeContainer"> container</div>
     </div>
   );
 }

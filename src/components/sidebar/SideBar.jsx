@@ -6,6 +6,7 @@ function SideBar() {
       <div className="top">
         <span className="logo">Lama Admin</span>
       </div>
+      <hr />
       <div className="center">
         <ul>
           <li>
@@ -22,9 +23,7 @@ function SideBar() {
           </li>
         </ul>
       </div>
-      <div className="buttom">
-        color option
-      </div>
+      <div className="buttom">color option</div>
     </div>
   );
 }
