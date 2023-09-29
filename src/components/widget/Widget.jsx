@@ -84,6 +84,7 @@ const Widget = ({ type }) => {
         <span className="title">{data.title}</span>
         <span className="counter">
           {data.isMoney && "$"} {amount}
+          {/* if data.isMoney is true, it will display the dollar sign "$". */}
         </span>
         <span className="link">{data.link}</span>
       </div>
