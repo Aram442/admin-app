@@ -10,12 +10,7 @@ function Home() {
       <SideBar />
       <div className="homeContainer">
         <Navbar />
-        <div className="widgets">
-          <Widget />
-          <Widget />
-          <Widget />
-          <Widget />
-        </div>
+        <div className="widgets"></div>
       </div>
     </div>
   );
