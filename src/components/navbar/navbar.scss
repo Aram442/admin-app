@@ -22,9 +22,10 @@
       input {
         border: none;
         outline: none;
-        background: transparent;
+        background: transparent; // When we Swithc Mode to Dark we did not cuse any Problem
 
         &::placeholder {
+          // to setting place holder in Css
           font-size: 12px;
         }
       }
@@ -36,9 +37,9 @@
 
       .item {
         display: flex;
-        align-items: center;
+        align-items: center; //Verticaly move to Center |
         margin-right: 20px;
-        position: relative;
+        position: relative; // parent
 
         .icon {
           font-size: 20px;
@@ -61,8 +62,8 @@
           justify-content: center;
           font-size: 10px;
           font-weight: bold;
-          position: absolute;
-          top: -5px;
+          position: absolute; //when the Chield position = absolute then the paret position should = relative .
+          top: -5px; // Bo away Zhmary notification bkaweta Sar Iconakan.
           right: -5px;
         }
       }
