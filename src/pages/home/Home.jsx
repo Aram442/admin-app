@@ -2,7 +2,7 @@ import React from "react";
 import "./home.scss";
 import SideBar from "../../components/sidebar/SideBar";
 import Navbar from "../../components/navbar/Navbar";
-
+import Widget from "../../components/widget/Widget";
 
 function Home() {
   return (
@@ -10,7 +10,12 @@ function Home() {
       <SideBar />
       <div className="homeContainer">
         <Navbar />
-        container
+        <div className="widgets">
+          <Widget />
+          <Widget />
+          <Widget />
+          <Widget />
+        </div>
       </div>
     </div>
   );
