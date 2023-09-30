@@ -30,6 +30,7 @@ const New = ({ inputs, title }) => {
             <form>
               <div className="formInput">
                 <label htmlFor="file">
+                  {/* By clicking file Icon Navigate to My files in my computer */}
                   Image: <DriveFolderUploadOutlinedIcon className="icon" />
                 </label>
                 <input
