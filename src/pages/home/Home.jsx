@@ -25,6 +25,7 @@ function Home() {
         </div>
         <div className="listConatiner">
           <div className="listTitle"> Latest Trancactions</div>
+          <Table />
         </div>
       </div>
     </div>
