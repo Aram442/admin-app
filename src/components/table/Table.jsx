@@ -90,6 +90,7 @@ const List = () => {
               <TableCell className="tableCell">{row.method}</TableCell>
               <TableCell className="tableCell">
                 <span className={`status ${row.status}`}>{row.status}</span>
+                {/* to show us dynamic state of the product */}
               </TableCell>
             </TableRow>
           ))}
