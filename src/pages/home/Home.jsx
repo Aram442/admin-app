@@ -20,7 +20,7 @@ function Home() {
         </div>
         <div className="charts">
           <Featured />
-          {/* <Chart /> */}
+          <Chart />
         </div>
       </div>
     </div>
