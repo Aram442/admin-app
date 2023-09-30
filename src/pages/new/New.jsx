@@ -7,6 +7,8 @@ import { useState } from "react";
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
 
+  // console.log(file);
+  // katek Image ek haldabzhery hamu zanyaryakany danusret .
   return (
     <div className="new">
       <Sidebar />
@@ -22,6 +24,8 @@ const New = ({ inputs, title }) => {
                 file
                   ? URL.createObjectURL(file)
                   : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                // URL.createObjectURL(file) used to creating ( new URL) using Local img
+                // if we chose New image in my computer create new URL to imge , if we have not File just choose previous one.
               }
               alt=""
             />
@@ -43,6 +47,7 @@ const New = ({ inputs, title }) => {
 
               {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
+                  {/* if used map use a Diffirent key to it */}
                   <label>{input.label}</label>
                   <input type={input.type} placeholder={input.placeholder} />
                 </div>
