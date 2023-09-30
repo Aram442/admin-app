@@ -12,6 +12,7 @@ const Datatable = () => {
   };
 
   const actionColumn = [
+    
     {
       field: "action",
       headerName: "Action",
