@@ -36,6 +36,7 @@ const Single = () => {
                     Elton St. 234 Garden Yd. NewYork
                   </span>
                 </div>
+
                 <div className="detailItem">
                   <span className="itemKey">Country:</span>
                   <span className="itemValue">USA</span>
