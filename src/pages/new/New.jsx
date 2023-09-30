@@ -41,12 +41,12 @@ const New = ({ inputs, title }) => {
                 />
               </div>
 
-              {/* {inputs.map((input) => (
+              {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
                   <input type={input.type} placeholder={input.placeholder} />
                 </div>
-              ))} */}
+              ))}
               <button>Send</button>
             </form>
           </div>
