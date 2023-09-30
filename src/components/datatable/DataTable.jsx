@@ -5,14 +5,13 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const Datatable = () => {
-  const [data, setData] = useState(userRows);
+  const [data, setData] = useState(userRows); //initial to Delete Row
 
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
   };
 
   const actionColumn = [
-    
     {
       field: "action",
       headerName: "Action",
