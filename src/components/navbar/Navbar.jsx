@@ -7,11 +7,12 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import myImage from "../../imges/myImage.jpg";
+
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
 
 const Navbar = () => {
-  const { dispatch } = useContext(DarkModeContext);
+  const { dispatch } = useContext(DarkModeContext); //Allows you to access the (value stored)in a (context).
 
   return (
     <div className="navbar">
