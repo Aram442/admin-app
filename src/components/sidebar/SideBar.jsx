@@ -17,7 +17,7 @@ import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
 
 const Sidebar = () => {
-  const { dispatch } = useContext(DarkModeContext);
+  const { dispatch } = useContext(DarkModeContext); //Allows you to access the (value stored)in a (context).
   return (
     <div className="sidebar">
       <div className="top">
