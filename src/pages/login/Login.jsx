@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import "./login.scss";
 function Login() {
+  const [error, setError] = useState(false);
   return (
-    <div>
+    <div className="login">
       <form>
         <input type="email" placeholder="Email" />
         <input type="password" placeholder="Password" />
         <button type="submit">Submit</button>
-        <span>Wrong Email or Password</span>
+        {error && <span>Wrong Email or Password</span>}{" "}
+        {/* if Have Error Show this Span */}
       </form>
     </div>
   );
