@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./login.scss";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 function Login() {
   const [error, setError] = useState(false);
@@ -10,6 +11,7 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate(); // I used useNavigate to navigate to othe View.
+  const { dispatch } = useContext(AuthContext);
 
   //----------------- SIGN UP WITH EMAIL & PASSWORD --------------//
   const handleLogin = (e) => {
@@ -19,6 +21,7 @@ function Login() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        dispatch({ type: "LOGIN", payload: user });
         // console.log(user);
         navigate("/"); // if the Login Successfull go to Home page
       })
