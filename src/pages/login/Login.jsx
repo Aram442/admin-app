@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./login.scss";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 
 function Login() {
@@ -10,9 +10,11 @@ function Login() {
 
   //----------------- SIGN UP WITH EMAIL & PASSWORD --------------//
   const handleLogin = (e) => {
-    createUserWithEmailAndPassword(auth, email, password)
+    e.preventDefault();
+
+    signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed up
+        // Signed in
         const user = userCredential.user;
         console.log(user);
       })
