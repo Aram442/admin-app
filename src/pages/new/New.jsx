@@ -3,12 +3,27 @@ import Sidebar from "../../components/sidebar/SideBar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
+import { doc, setDoc, addDoc, collection } from "firebase/firestore";
+import { db } from "../../firebase";
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
-
   // console.log(file);
   // katek Image ek haldabzhery hamu zanyaryakany danusret .
+
+  //---------------------ADD NEW DOCUMENT -------------------//
+  const handleAdd = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await addDoc(collection(db, "cities"), {
+        name: "Los Angeles",
+        state: "CA",
+        country: "USA",
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className="new">
       <Sidebar />
@@ -31,7 +46,7 @@ const New = ({ inputs, title }) => {
             />
           </div>
           <div className="right">
-            <form>
+            <form onSubmit={handleAdd}>
               <div className="formInput">
                 <label htmlFor="file">
                   {/* By clicking file Icon Navigate to My files in my computer */}
@@ -51,7 +66,7 @@ const New = ({ inputs, title }) => {
                   <input type={input.type} placeholder={input.placeholder} />
                 </div>
               ))}
-              <button>Send</button>
+              <button type="submit">Send</button>
             </form>
           </div>
         </div>
