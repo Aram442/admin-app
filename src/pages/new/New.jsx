@@ -17,6 +17,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
+  const [perc, setPerc] = useState(null); // for Image Progress when I upload the Image.
 
   //---------------- TO DIRECTLY SET IMAGE UPLOAD -------------//
   useEffect(() => {
@@ -32,6 +33,7 @@ const New = ({ inputs, title }) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Upload is " + progress + "% done");
+          setPerc(progress);
           switch (snapshot.state) {
             case "paused":
               console.log("Upload is paused");
@@ -129,7 +131,10 @@ const New = ({ inputs, title }) => {
                   />
                 </div>
               ))}
-              <button type="submit">Send</button>
+              <button type="submit" disabled={perc !== null && perc > 100}>
+                Send
+              </button>
+              {/* perc > 100 it means the Image progress not Complete */}
             </form>
           </div>
         </div>
