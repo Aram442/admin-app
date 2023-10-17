@@ -3,11 +3,12 @@ import Sidebar from "../../components/sidebar/SideBar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
-import { doc, setDoc, addDoc, collection } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../firebase";
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
+  const [data, setData] = useState({});
   // console.log(file);
   // katek Image ek haldabzhery hamu zanyaryakany danusret .
 
