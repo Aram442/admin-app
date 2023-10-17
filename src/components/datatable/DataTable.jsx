@@ -4,7 +4,7 @@ import { userColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { db } from "../../firebase";
-const { collection, getDocs, doc } = require("firebase/firestore");
+import { collection, getDocs } from "firebase/firestore";
 
 const Datatable = () => {
   const [data, setData] = useState([]);
@@ -19,12 +19,11 @@ const Datatable = () => {
           list.push({ id: doc.id, ...doc.data() });
         });
         setData(list);
-        // console.log(list)
-      } catch (error) {
-        console.log(error);
+        console.log(list);
+      } catch (err) {
+        console.log(err);
       }
     };
-
     fetchData();
   }, []);
   console.log(data);
