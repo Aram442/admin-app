@@ -2,11 +2,32 @@ import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { db } from "../../firebase";
+const { collection, getDocs, doc } = require("firebase/firestore");
 
 const Datatable = () => {
-  const [data, setData] = useState(userRows); //initial to Delete Row
+  const [data, setData] = useState([]);
 
+  // ---------------- GETTING ALL DATA IN FIRESTORE ---------------//
+  useEffect(() => {
+    const fetchData = async () => {
+      let list = [];
+      try {
+        const querySnapshot = await getDocs(collection(db, "users"));
+        querySnapshot.forEach((doc) => {
+          list.push({ id: doc.id, ...doc.data() });
+        });
+        setData(list);
+        // console.log(list)
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  console.log(data);
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
   };
