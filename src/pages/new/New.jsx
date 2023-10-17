@@ -3,27 +3,39 @@ import Sidebar from "../../components/sidebar/SideBar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
-import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../firebase";
+import {
+  doc,
+  setDoc,
+  addDoc,
+  collection,
+  serverTimestamp,
+} from "firebase/firestore";
+import { auth, db } from "../../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
-
+  //--------------------- NEW USER INPUT -------------------//
   const handleInput = (e) => {
     const id = e.target.id;
     const value = e.target.value;
     setData({ ...data, [id]: value });
   };
-  console.log(data);
-  //---------------------ADD NEW DOCUMENT -------------------//
+  // console.log(data);
+  //--------------------- ADD NEW DOCUMENT -------------------//
   const handleAdd = async (e) => {
     e.preventDefault();
     try {
-      const res = await addDoc(collection(db, "cities"), {
-        name: "Los Angeles",
-        state: "CA",
-        country: "USA",
+      //---------------- ADD NEW USER DOC IN FIRESTORE & FIREAUTH BY ID ---------------//
+      const res = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      res = await setDoc(doc(db, "users", res.user.uid), {
+        ...data,
+        timeStamp: serverTimestamp(),
       });
     } catch (err) {
       console.log(err);
