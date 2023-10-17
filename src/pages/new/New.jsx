@@ -4,27 +4,29 @@ import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useEffect, useState } from "react";
 import {
-  doc,
-  setDoc,
   addDoc,
   collection,
+  doc,
   serverTimestamp,
+  setDoc,
 } from "firebase/firestore";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { auth, db, storage } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { useNavigate } from "react-router-dom";
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
-  const [perc, setPerc] = useState(null); // for Image Progress when I upload the Image.
+  const [per, setPerc] = useState(null);
+  const navigate = useNavigate();
 
-  //---------------- TO DIRECTLY SET IMAGE UPLOAD -------------//
   useEffect(() => {
     const uploadFile = () => {
       const name = new Date().getTime() + file.name;
+
       console.log(name);
-      const storageRef = ref(storage, "images/rivers.jpg");
+      const storageRef = ref(storage, file.name);
       const uploadTask = uploadBytesResumable(storageRef, file);
 
       uploadTask.on(
@@ -49,8 +51,6 @@ const New = ({ inputs, title }) => {
           console.log(error);
         },
         () => {
-          // Handle successful uploads on complete
-          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setData((prev) => ({ ...prev, img: downloadURL }));
           });
@@ -59,31 +59,34 @@ const New = ({ inputs, title }) => {
     };
     file && uploadFile();
   }, [file]);
-  //--------------------- NEW USER INPUT -------------------//
+
+  console.log(data);
+
   const handleInput = (e) => {
     const id = e.target.id;
     const value = e.target.value;
+
     setData({ ...data, [id]: value });
   };
-  // console.log(data);
-  //--------------------- ADD NEW DOCUMENT -------------------//
+
   const handleAdd = async (e) => {
     e.preventDefault();
     try {
-      //---------------- ADD NEW USER DOC IN FIRESTORE & FIREAUTH BY ID ---------------//
       const res = await createUserWithEmailAndPassword(
         auth,
         data.email,
         data.password
       );
-      res = await setDoc(doc(db, "users", res.user.uid), {
+      await setDoc(doc(db, "users", res.user.uid), {
         ...data,
         timeStamp: serverTimestamp(),
       });
+      navigate(-1);
     } catch (err) {
       console.log(err);
     }
   };
+
   return (
     <div className="new">
       <Sidebar />
@@ -99,8 +102,6 @@ const New = ({ inputs, title }) => {
                 file
                   ? URL.createObjectURL(file)
                   : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-                // URL.createObjectURL(file) used to creating ( new URL) using Local img
-                // if we chose New image in my computer create new URL to imge , if we have not File just choose previous one.
               }
               alt=""
             />
@@ -109,7 +110,6 @@ const New = ({ inputs, title }) => {
             <form onSubmit={handleAdd}>
               <div className="formInput">
                 <label htmlFor="file">
-                  {/* By clicking file Icon Navigate to My files in my computer */}
                   Image: <DriveFolderUploadOutlinedIcon className="icon" />
                 </label>
                 <input
@@ -131,10 +131,9 @@ const New = ({ inputs, title }) => {
                   />
                 </div>
               ))}
-              <button type="submit" disabled={perc !== null && perc > 100}>
+              <button disabled={per !== null && per < 100} type="submit">
                 Send
               </button>
-              {/* perc > 100 it means the Image progress not Complete */}
             </form>
           </div>
         </div>
