@@ -9,9 +9,13 @@ import { db } from "../../firebase";
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
-  // console.log(file);
-  // katek Image ek haldabzhery hamu zanyaryakany danusret .
 
+  const handleInput = (e) => {
+    const id = e.target.id;
+    const value = e.target.value;
+    setData({ ...data, [id]: value });
+  };
+  console.log(data);
   //---------------------ADD NEW DOCUMENT -------------------//
   const handleAdd = async (e) => {
     e.preventDefault();
@@ -64,7 +68,12 @@ const New = ({ inputs, title }) => {
               {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
-                  <input type={input.type} placeholder={input.placeholder} />
+                  <input
+                    id={input.id}
+                    type={input.type}
+                    placeholder={input.placeholder}
+                    onChange={handleInput}
+                  />
                 </div>
               ))}
               <button type="submit">Send</button>
