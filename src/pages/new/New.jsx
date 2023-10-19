@@ -81,7 +81,7 @@ const New = ({ inputs, title }) => {
         ...data,
         timeStamp: serverTimestamp(),
       });
-      navigate(-1);
+      navigate(-1); // after we Add new User navigate us to User page
     } catch (err) {
       console.log(err);
     }
