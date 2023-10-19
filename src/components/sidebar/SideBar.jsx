@@ -11,7 +11,7 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
@@ -21,33 +21,34 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="top">
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">Admin Panel</span>
-        </Link>
+        <span className="logo">Admin Panel</span>
       </div>
       <hr />
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
           <li>
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <NavLink to="/" style={{ textDecoration: "none" }}>
               <DashboardIcon className="icon" />
               <span>Dashboard</span>
-            </Link>
+            </NavLink>
           </li>
           <p className="title">LISTS</p>
-          <Link to="/users" style={{ textDecoration: "none" }}>
-            <li>
+
+          <li>
+            <NavLink to="/users" style={{ textDecoration: "none" }}>
               <PersonOutlineIcon className="icon" />
               <span>Users</span>
-            </li>
-          </Link>
-          <Link to="/products" style={{ textDecoration: "none" }}>
-            <li>
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/products" style={{ textDecoration: "none" }}>
               <StoreIcon className="icon" />
               <span>Products</span>
-            </li>
-          </Link>
+            </NavLink>
+          </li>
+
           <li>
             <CreditCardIcon className="icon" />
             <span>Orders</span>
