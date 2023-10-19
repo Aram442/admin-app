@@ -4,27 +4,52 @@ import { userColumns } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { db } from "../../firebase";
-import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  doc,
+  deleteDoc,
+  onSnapshot,
+} from "firebase/firestore";
 
 const Datatable = () => {
   const [data, setData] = useState([]);
 
   // ---------------- GETTING ALL DATA IN FIRESTORE ---------------//
   useEffect(() => {
-    const fetchData = async () => {
-      let list = [];
-      try {
-        const querySnapshot = await getDocs(collection(db, "users"));
-        querySnapshot.forEach((doc) => {
+    // const fetchData = async () => {
+    //   let list = [];
+    //   try {
+    //     const querySnapshot = await getDocs(collection(db, "users"));
+    //     querySnapshot.forEach((doc) => {
+    //       list.push({ id: doc.id, ...doc.data() });
+    //     });
+    //     setData(list);
+    //     console.log(list);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // };
+    // fetchData();
+    // ---------------- LISTIN REAL TIME DATABASE ---------------//
+
+    const unsub = onSnapshot(
+      collection(db, "users"),
+      (snapShot) => {
+        let list = [];
+        snapShot.docs.forEach((doc) => {
           list.push({ id: doc.id, ...doc.data() });
         });
         setData(list);
-        console.log(list);
-      } catch (err) {
-        console.log(err);
+      },
+      (error) => {
+        console.log(error);
       }
+    );
+
+    return () => {
+      unsub();
     };
-    fetchData();
   }, []);
   // console.log(data);
   // ---------------- DELETING DATA FROM FIRESTORE ---------------//
