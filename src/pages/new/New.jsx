@@ -60,8 +60,6 @@ const New = ({ inputs, title }) => {
     file && uploadFile();
   }, [file]);
 
-  console.log(data);
-
   const handleInput = (e) => {
     const id = e.target.id;
     const value = e.target.value;

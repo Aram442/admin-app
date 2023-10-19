@@ -77,10 +77,10 @@ const Widget = ({ type }) => {
         ),
       };
       break;
-
     default:
       break;
   }
+
   useEffect(() => {
     const fetchData = async () => {
       const today = new Date();
@@ -88,12 +88,12 @@ const Widget = ({ type }) => {
       const prevMonth = new Date(new Date().setMonth(today.getMonth() - 2));
 
       const lastMonthQuery = query(
-        collection(db, data.query),
+        collection(db, "users"), //data.query cuase of an Error;
         where("timeStamp", "<=", today),
         where("timeStamp", ">", lastMonth)
       );
       const prevMonthQuery = query(
-        collection(db, data.query),
+        collection(db, "users"), //data.query cuase of an Error;
         where("timeStamp", "<=", lastMonth),
         where("timeStamp", ">", prevMonth)
       );
