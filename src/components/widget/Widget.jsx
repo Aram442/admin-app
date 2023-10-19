@@ -1,5 +1,6 @@
 import "./widget.scss";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
@@ -9,11 +10,9 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 
 const Widget = ({ type }) => {
+  const [amount, setAmount] = useState(null);
+  const [diff, setDiff] = useState(null);
   let data;
-
-  //temporary
-  const amount = 100;
-  const diff = 20;
 
   switch (type) {
     case "user":
@@ -21,6 +20,7 @@ const Widget = ({ type }) => {
         title: "USERS",
         isMoney: false,
         link: "See all users",
+        query: "users",
         icon: (
           <PersonOutlinedIcon
             className="icon"
@@ -61,10 +61,10 @@ const Widget = ({ type }) => {
         ),
       };
       break;
-    case "balance":
+    case "product":
       data = {
-        title: "BALANCE",
-        isMoney: true,
+        title: "PRODUCTS",
+        query: "products",
         link: "See details",
         icon: (
           <AccountBalanceWalletOutlinedIcon
@@ -77,10 +77,10 @@ const Widget = ({ type }) => {
         ),
       };
       break;
+
     default:
       break;
   }
-  //----------------- TO SHOW OUR WIDGET ----------------//
   useEffect(() => {
     const fetchData = async () => {
       const today = new Date();
@@ -117,13 +117,12 @@ const Widget = ({ type }) => {
         <span className="title">{data.title}</span>
         <span className="counter">
           {data.isMoney && "$"} {amount}
-          {/* if data.isMoney is true, it will display the dollar sign "$". */}
         </span>
         <span className="link">{data.link}</span>
       </div>
       <div className="right">
-        <div className="percentage positive">
-          <KeyboardArrowUpIcon />
+        <div className={`percentage ${diff < 0 ? "negative" : "positive"}`}>
+          {diff < 0 ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
           {diff} %
         </div>
         {data.icon}
