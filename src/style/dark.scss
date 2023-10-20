@@ -88,11 +88,32 @@
     .desc {
       color: rgb(255, 251, 251);
     }
-    .summary{
-       .itemTitle{
-      color: rgb(231, 231, 231);
+    .summary {
+      .itemTitle {
+        color: rgb(231, 231, 231);
+      }
     }
+  }
+  .single {
+    .singleContainer {
+      .top {
+        .left {
+          .editButton {
+            color: rgb(236, 236, 149);
+          }
+          .details {
+            .itemTitle {
+              color: rgb(236, 236, 149);
+            }
+            .itemKey {
+              color: white;
+            }
+            .itemValue {
+              color: rgb(236, 225, 225);
+            }
+          }
+        }
+      }
     }
-   
   }
 }
