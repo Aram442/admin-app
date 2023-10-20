@@ -1,6 +1,6 @@
 .app.dark {
   background-color: #111;
-  color: rgb(156, 156, 156);
+  color: white;
 
   .chartGrid {
     stroke: rgba(228, 228, 228, 0.219);
@@ -10,26 +10,26 @@
     background-color: #111;
 
     .tableCell {
-      color: gray;
+      color: rgb(250, 247, 247);
     }
   }
 
   .navbar {
-    color: #999;
+    color: #e7e2e2;
     border-color: #333;
 
     .search {
-      border-color: gray;
+      border-color: rgb(237, 231, 231);
     }
   }
 
   .sidebar {
     background-color: #111;
-    border-color: #333;
+    border-color: #626161;
 
     .top {
       .logo {
-        color: #999;
+        color: #75f024;
       }
     }
     hr {
@@ -43,7 +43,7 @@
         }
 
         .icon {
-          color: #999;
+          color: #b9fc10;
         }
       }
     }
@@ -51,13 +51,13 @@
 
   .datatable {
     .datagrid {
-      color: gray;
+      color: rgb(214, 204, 204);
       border: none;
 
       .viewButton,
       .deleteButton,
       .cellWithStatus {
-        color: gray;
+        color: rgb(207, 207, 46);
         border: none;
       }
     }
