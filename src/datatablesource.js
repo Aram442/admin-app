@@ -37,3 +37,4 @@ export const userColumns = [
     },
   },
 ];
+// I used this component for user page.

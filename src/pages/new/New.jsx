@@ -21,6 +21,7 @@ const New = ({ inputs, title }) => {
   const [per, setPerc] = useState(null);
   const navigate = useNavigate();
 
+  // -------------------- UPLOADING IMAGE FILES --------------------- //
   useEffect(() => {
     const uploadFile = () => {
       const name = new Date().getTime() + file.name;
@@ -62,10 +63,9 @@ const New = ({ inputs, title }) => {
   const handleInput = (e) => {
     const id = e.target.id;
     const value = e.target.value;
-
     setData({ ...data, [id]: value });
   };
-
+  // -------------------- EMAIL & PASSWORD AUTHENTICATION --------------------- //
   const handleAdd = async (e) => {
     e.preventDefault();
     try {
@@ -104,6 +104,7 @@ const New = ({ inputs, title }) => {
             />
           </div>
           <div className="right">
+            {/* // -------------------- ADD NEW USER TO FIREBASE --------------------- // */}
             <form onSubmit={handleAdd}>
               <div className="formInput">
                 <label htmlFor="file">
